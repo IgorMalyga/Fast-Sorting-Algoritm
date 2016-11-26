@@ -19,6 +19,7 @@ object Form1: TForm1
     Width = 889
     Height = 177
     ColCount = 13
+    DefaultColWidth = 35
     FixedCols = 0
     RowCount = 1
     FixedRows = 0

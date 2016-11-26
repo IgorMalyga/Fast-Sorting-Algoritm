@@ -33,6 +33,8 @@ var
 
 
 implementation
+{$R *.dfm}
+
 function InitArray(mas : Tarr; SG1 : TStringGrid) : Tarr;
 var i : Integer;
 begin
@@ -52,6 +54,8 @@ begin
  for i:= 0 to High(mas) do
  begin
   SG1.Cells[i,0] := IntToStr(mas[i]);
+  Sleep(300);
+  SG1.Repaint;
  end;
 end;
 
@@ -63,7 +67,7 @@ begin
  mas[middleindex]:=tmp;
 end;
 
-Function Partition(var mas : Tarr; l,r : integer) : Integer;
+Function Partition(var mas : Tarr; l,r : integer; SG1 : TStringGrid) : Integer;
 var i,j,x : Integer;
 begin
  x:=mas[r];
@@ -74,24 +78,26 @@ begin
     begin
      i:=i+1;
      Swap(mas,i,j);
+     Form1.ArrayToStringGrid(mas,SG1);
+     //Sleep(1000);
     end;
   end;
  Swap(mas,i+1,r);
  result:=i+1;
 end;
 
-procedure QuickSort(mas : Tarr; l,r : integer);
+procedure QuickSort(mas : Tarr; l,r : integer; SG1 : TStringGrid);
 var q:Integer;
 begin
  if l<r then
   begin
-   q:=Partition(mas,l,r);
-   QuickSort(mas,l,q-1);
-   QuickSort(mas,q+1,r);
+   q:=Partition(mas,l,r,SG1);
+   QuickSort(mas,l,q-1,SG1);
+   QuickSort(mas,q+1,r,SG1);
   end;
 end;
 
-{$R *.dfm}
+
 
 procedure TForm1.btn2Click(Sender: TObject);
 begin
@@ -102,7 +108,7 @@ end;
 
 procedure TForm1.btn1Click(Sender: TObject);
 begin
-QuickSort(mas,0,High(mas));
+QuickSort(mas,0,High(mas),SG1);
 ArrayToStringGrid(mas,SG1);
 end;
 
