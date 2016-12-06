@@ -1,6 +1,6 @@
 object Form1: TForm1
-  Left = 438
-  Top = 163
+  Left = 298
+  Top = 144
   Width = 928
   Height = 480
   Caption = 'Form1'
@@ -11,6 +11,7 @@ object Form1: TForm1
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
   object SG1: TStringGrid
@@ -24,6 +25,7 @@ object Form1: TForm1
     RowCount = 1
     FixedRows = 0
     TabOrder = 0
+    OnDrawCell = SG1DrawCell
   end
   object btn1: TButton
     Left = 32
